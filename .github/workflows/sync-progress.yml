@@ -1,0 +1,50 @@
+name: Sync coding profiles
+
+on:
+  schedule:
+    # Runs every day at 02:00 UTC (~07:30 IST). Cron is always UTC.
+    - cron: "0 2 * * *"
+  workflow_dispatch: {}   # lets you click "Run workflow" manually in the Actions tab
+
+# The default GITHUB_TOKEN only gets read access unless you grant this,
+# and we need write access to git-commit the new files + README back.
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r scripts/requirements.txt
+
+      - name: Sync LeetCode
+        env:
+          LEETCODE_USERNAME: ${{ secrets.LEETCODE_USERNAME }}
+          LEETCODE_SESSION: ${{ secrets.LEETCODE_SESSION }}
+          LEETCODE_CSRF_TOKEN: ${{ secrets.LEETCODE_CSRF_TOKEN }}
+        run: python scripts/sync_leetcode.py
+
+      - name: Sync GFG (best-effort)
+        env:
+          GFG_USERNAME: ${{ secrets.GFG_USERNAME }}
+        run: python scripts/sync_gfg.py
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          # If nothing changed (no new problems today), skip the commit
+          # instead of failing the Action on "nothing to commit".
+          git diff --cached --quiet && echo "Nothing new today." || \
+            git commit -m "chore: sync coding profile progress $(date -u +%Y-%m-%d)"
+          git push
