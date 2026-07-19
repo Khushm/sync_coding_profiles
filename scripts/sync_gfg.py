@@ -1,31 +1,3 @@
-"""
-sync_gfg.py
------------
-IMPORTANT — read this before wiring it up:
-
-Unlike LeetCode, GeeksforGeeks has NO API (official or otherwise) that
-exposes your submitted CODE. All that's publicly visible is your solved
-problem *list* (name, link, difficulty) — not what you actually wrote or
-when. So this script cannot fully replicate what sync_leetcode.py does.
-
-What it CAN do, daily and for free:
-  1. Hit a community-run GFG stats API to get your current solved list.
-  2. Diff it against what we've seen before (scripts/state/gfg_state.json).
-  3. For every newly-solved problem, create a stub folder + placeholder
-     README row so the only manual step left is: paste your code into the
-     stub file and commit. That turns "manually edit a markdown table"
-     into "paste code, git commit" — most of the busywork is gone, but
-     not all of it, because GFG simply doesn't hand out the code.
-
-  The community API used here (geeks-for-geeks-api.vercel.app) is an
-  unofficial, volunteer-hosted project — not something Anthropic or GFG
-  operate or guarantee. If it's down or changes shape, this step just
-  fails loudly and skips GFG for that run; LeetCode sync is unaffected.
-
-Env vars required:
-  GFG_USERNAME    your public GeeksforGeeks username
-"""
-
 import datetime
 import os
 import sys
@@ -34,7 +6,12 @@ import requests
 
 from common import load_state, save_state, append_rows_to_readme, REPO_ROOT
 
-STATS_API = "https://geeks-for-geeks-api.vercel.app/{username}"
+# "solved-problems" is documented as a legacy/deprecated alias on this API,
+# but it's the only endpoint that returns the per-problem list (name, link,
+# difficulty) rather than just aggregate counts — which is what we need to
+# detect *new* solves. If this API drops the endpoint entirely, this whole
+# script just fails and gets skipped (see the except block at the bottom).
+STATS_API = "https://gfg-stats.tashif.codes/{username}/solved-problems"
 
 DIFFICULTY_DISPLAY = {
     "school": "Easy",
@@ -46,16 +23,37 @@ DIFFICULTY_DISPLAY = {
 
 
 def fetch_solved_problems(username: str) -> list[dict]:
-    """Returns a flat list of {"question": ..., "link": ..., "difficulty": ...}
-    across all difficulty buckets the API groups them into."""
+    """Returns a flat list of {"question", "link", "difficulty", "slug"}.
+
+    Real response shape (confirmed by hitting the endpoint directly), a
+    flat top-level "problems" array — no nested envelope:
+        {
+          "userName": "...",
+          "totalProblemsSolved": 36,
+          "problemsByDifficulty": {"hard": 4, "medium": 20, "easy": 12, ...},
+          "problems": [
+            {"question": "Missing in Array",
+             "questionUrl": "https://www.geeksforgeeks.org/problems/...",
+             "difficulty": "Easy",
+             "slug": "missing-number-in-array1416"},
+            ...
+          ]
+        }
+    """
     resp = requests.get(STATS_API.format(username=username), timeout=30)
     resp.raise_for_status()
     data = resp.json()
 
     flat = []
-    for bucket, payload in data.get("solvedStats", {}).items():
-        for q in payload.get("questions", []):
-            flat.append({"question": q["question"], "link": q["link"], "difficulty": bucket})
+    for q in data.get("problems", []):
+        flat.append(
+            {
+                "question": q["question"],
+                "link": q["questionUrl"],
+                "difficulty": q["difficulty"],
+                "slug": q.get("slug") or slugify(q["question"]),
+            }
+        )
     return flat
 
 
@@ -79,7 +77,7 @@ def main() -> None:
 
         print(f"New solved problem found: {p['question']}")
 
-        slug = slugify(p["question"])
+        slug = p["slug"]
         problem_dir = REPO_ROOT / "gfg-submission" / "dsa" / slug
         problem_dir.mkdir(parents=True, exist_ok=True)
         stub_path = problem_dir / "solution.py"
