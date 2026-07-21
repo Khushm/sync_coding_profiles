@@ -61,3 +61,4 @@ A repository dedicated to tracking my problem-solving journey, algorithms, and d
 | 2026-07-20 | Misc | [Rearrange the Array](https://www.geeksforgeeks.org/problems/rearrange-the-array-1639032648) | GFG | Hard | [.py](./gfg-submission/dsa/rearrange-the-array-1639032648/solution.py) |
 | 2026-07-20 | Misc | [Cut Matrix](https://www.geeksforgeeks.org/problems/cut-matrix) | GFG | Hard | [.py](./gfg-submission/dsa/cut-matrix/solution.py) |
 | 2026-07-20 | Misc | [Shortest Unique Prefix for Every Word](https://www.geeksforgeeks.org/problems/shortest-unique-prefix-for-every-word) | GFG | Hard | [.py](./gfg-submission/dsa/shortest-unique-prefix-for-every-word/solution.py) |
+| 2026-07-20 | Array | [Shift 2D Grid](https://leetcode.com/problems/shift-2d-grid/description/) | LeetCode | Easy | [.py](./leetcode-submission/dsa-problems/shift-2d-grid/solution.py) |
