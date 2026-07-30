@@ -1,6 +1,8 @@
 {
   "synced_ids": [
     "https://www.geeksforgeeks.org/problems/bfs-traversal-of-graph",
+    "https://www.geeksforgeeks.org/problems/coins-of-geekland--141631",
+    "https://www.geeksforgeeks.org/problems/construct-a-full-binary-tree--170648",
     "https://www.geeksforgeeks.org/problems/count-of-n-digit-numbers-whose-sum-of-digits-equals-to-given-sum0733",
     "https://www.geeksforgeeks.org/problems/count-of-sum-of-consecutives3741",
     "https://www.geeksforgeeks.org/problems/count-pairs-in-array-divisible-by-k",
@@ -28,6 +30,7 @@
     "https://www.geeksforgeeks.org/problems/maximum-number-of-characters-between-any-two-same-character4552",
     "https://www.geeksforgeeks.org/problems/maximum-prefix-sum-for-a-given-range0227",
     "https://www.geeksforgeeks.org/problems/maximum-reachable-index-difference",
+    "https://www.geeksforgeeks.org/problems/maximum-subset-xor",
     "https://www.geeksforgeeks.org/problems/minimum-insertions-to-make-two-arrays-equal",
     "https://www.geeksforgeeks.org/problems/minimum-number-of-deletions-to-make-a-sorted-sequence3248",
     "https://www.geeksforgeeks.org/problems/missing-number-in-array1416",
@@ -39,9 +42,11 @@
     "https://www.geeksforgeeks.org/problems/preorder-traversal-and-bst4006",
     "https://www.geeksforgeeks.org/problems/prime-number2314",
     "https://www.geeksforgeeks.org/problems/print-adjacency-list-1587115620",
+    "https://www.geeksforgeeks.org/problems/print-binary-tree-levels-in-sorted-order3241",
     "https://www.geeksforgeeks.org/problems/rearrange-the-array-1639032648",
     "https://www.geeksforgeeks.org/problems/rotten-oranges2536",
     "https://www.geeksforgeeks.org/problems/shortest-unique-prefix-for-every-word",
+    "https://www.geeksforgeeks.org/problems/split-array-into-minimum-subsets",
     "https://www.geeksforgeeks.org/problems/subset-with-sum-divisible-by-m2546",
     "https://www.geeksforgeeks.org/problems/ticket-sellers3241"
   ]
