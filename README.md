@@ -89,3 +89,4 @@ A repository dedicated to tracking my problem-solving journey, algorithms, and d
 | 2026-08-01 | Array | [Predict the Winner](https://leetcode.com/problems/predict-the-winner/description/) | LeetCode | Med | [.py](./leetcode-submission/dsa-problems/predict-the-winner/solution.py) |
 | 2026-08-01 | Misc | [Max After m Range Increments](https://www.geeksforgeeks.org/problems/max-value-after-m-range-operation4300) | GFG | Med | [.py](./gfg-submission/dsa/max-value-after-m-range-operation4300/solution.py) |
 | 2026-08-01 | Misc | [Subsets with Products of Distinct Primes](https://www.geeksforgeeks.org/problems/game-of-subsets) | GFG | Hard | [.py](./gfg-submission/dsa/game-of-subsets/solution.py) |
+| 2026-08-02 | Array | [Stone Game](https://leetcode.com/problems/stone-game/description/) | LeetCode | Med | [.py](./leetcode-submission/dsa-problems/stone-game/solution.py) |
