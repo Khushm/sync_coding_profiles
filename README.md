@@ -91,3 +91,5 @@ A repository dedicated to tracking my problem-solving journey, algorithms, and d
 | 2026-08-01 | Misc | [Subsets with Products of Distinct Primes](https://www.geeksforgeeks.org/problems/game-of-subsets) | GFG | Hard | [.py](./gfg-submission/dsa/game-of-subsets/solution.py) |
 | 2026-08-02 | Array | [Stone Game](https://leetcode.com/problems/stone-game/description/) | LeetCode | Med | [.py](./leetcode-submission/dsa-problems/stone-game/solution.py) |
 | 2026-08-03 | Misc | [Sequences where Adjacent Divide](https://www.geeksforgeeks.org/problems/count-in-array2138) | GFG | Med | [.py](./gfg-submission/dsa/count-in-array2138/solution.py) |
+| 2026-08-03 | Array | [Stone Game III](https://leetcode.com/problems/stone-game-iii/description/) | LeetCode | Hard | [.py](./leetcode-submission/dsa-problems/stone-game-iii/solution.py) |
+| 2026-08-04 | Misc | [Max Sum Subarray of Size at least K](https://www.geeksforgeeks.org/problems/largest-sum-subarray-of-size-at-least-k3121) | GFG | Med | [.py](./gfg-submission/dsa/largest-sum-subarray-of-size-at-least-k3121/solution.py) |
